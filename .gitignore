@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 
+**/src/assets/xanadu
+
 # dependencies
 /node_modules
 
