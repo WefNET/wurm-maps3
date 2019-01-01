@@ -1,10 +1,10 @@
 # WurmMaps3
 
-Removed: 
+## Removed: 
 
-Toolbar for maps.. you'll know the map by the url
-Left panel.. what a bunch of crap!
+- Toolbar for maps.. you'll know the map by the url
+- Left panel.. what a bunch of crap!
 
-Added:
+## Added:
 
-More awesome
+- More awesome
