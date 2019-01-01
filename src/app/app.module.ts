@@ -12,17 +12,25 @@ import { MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { HomeComponent } from './components/home/home.component';
 import { XanaduComponent } from './maps/xanadu/xanadu.component';
+import { DeliComponent } from './maps/deli/deli.component';
+import { PristineComponent } from './maps/pristine/pristine.component'
 
 import { CommonService } from './services/common.service'
 import { StyleService } from './services/style.service'
 import { SheetsService } from './services/sheets.service'
-import { LayersService } from './services/layers.service'
+import { LayersService } from './services/layers.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    XanaduComponent
+    HomeComponent,
+    XanaduComponent,
+    DeliComponent,
+    PristineComponent
   ],
   imports: [
     BrowserModule,

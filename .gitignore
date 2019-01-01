@@ -6,6 +6,8 @@
 /out-tsc
 
 **/src/assets/xanadu
+**/src/assets/pristine
+**/src/assets/indy
 
 # dependencies
 /node_modules
