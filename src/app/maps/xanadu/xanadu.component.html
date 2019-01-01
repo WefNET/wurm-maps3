@@ -4,8 +4,16 @@
 
 <div class="drawing-tools">
     <div>
-        <p-button icon="pi pi-cog" (click)="displaySidebar = true" title="Display left tweaking panel"></p-button>
+        <p-button icon="pi pi-search" (click)="displayFindADeed = true" title="Find a Deed"></p-button>
+        <select *ngIf="deeds != null && displayFindADeed == true" class="find-a-deed" placeholder="Find a Deed" (change)="findDeed($event)" style="font-size: 14px;">
+            <option *ngFor="let deed of deeds; let i = index;" value="{{i}}">
+                {{ deed.name }}
+            </option>
+        </select>
     </div>
+    <!-- <div>
+        <p-button icon="pi pi-cog" (click)="displaySidebar = true" title="Display left tweaking panel"></p-button>
+    </div> -->
     <div>
         <p-button icon="pi pi-pencil" (click)="showDrawingTools()" title="Activate drawing toolage"></p-button>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Title } from '@angular/platform-browser';
 
 import OlMap from "ol/Map";
 import OlXYZ from "ol/source/XYZ";
@@ -36,6 +37,7 @@ import { IBoringDeed, IBridge, ICanal } from './../../models/models';
 
 export class XanaduComponent implements OnInit {
     displaySidebar: boolean;
+    displayFindADeed: boolean;
 
     map: OlMap;
     view: OlView;
@@ -87,13 +89,16 @@ export class XanaduComponent implements OnInit {
     constructor(private common: CommonService,
         private styles: StyleService,
         private layersService: LayersService,
-        private sheetsService: SheetsService) {
+        private sheetsService: SheetsService,
+        private title: Title) {
 
         for (var z = 0; z <= this.mapMaxZoom; z++) {
             this.mapResolutions.push(
                 Math.pow(2, this.mapMaxZoom - z) * this.mapMaxResolution
             );
         }
+
+        title.setTitle("Xanadu - WurmOnlineMaps.com");
     }
 
     ngOnInit() {
@@ -274,6 +279,17 @@ export class XanaduComponent implements OnInit {
                 this.overlayGroup.getLayers().push(startingDeedsVector);
 
             });
+    }
+
+    findDeed(args) {
+
+        let deed = this.deeds[args.target.value];
+
+        var extent = [deed.x - 100, deed.y - 100, deed.x + 100, deed.y + 100];
+        var view = this.map.getView();
+        var size = this.map.getSize();
+
+        view.fit(extent, size);
     }
 
     //#region Drawing Tools
