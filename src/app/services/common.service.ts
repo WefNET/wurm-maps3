@@ -26,7 +26,10 @@ export class CommonService {
   mousePositionControl(): MousePosition {
     return new MousePosition({
       coordinateFormat: function (coordinate) {
-        return format(coordinate, "{x}, {y}", 0);
+        let x = coordinate[0];
+        let y = coordinate[1];
+
+        return `${Math.round(x)}, ${Math.abs(Math.round(y))}`;
       },
       className: "custom-mouse-position",
       target: document.getElementById("mouse-position"),

@@ -65,8 +65,80 @@ export class LayersService {
       "Coords": [[2702, -2221], [2742, -2221], [2742, -2261], [2702, -2261]]
     }
   ];
-
+  pristineStartingTowns = [
+    {
+        "Name": "Blossom",
+        "Coords": [[869, -688], [869, -719], [838, -719], [838, -688]]
+    },
+];
   constructor() { }
+
+  //#region Shared
+  sharedBridgesVectorSource(bridges: IBridge[]): VectorSource {
+    var bridgesVectorSource = new VectorSource();
+
+    for (let bridge of bridges) {
+
+      var bridgeFeature = new Feature({
+        geometry: new LineString([[bridge.X1, bridge.Y1], [bridge.X2, bridge.Y2]]),
+        name: bridge.Name,
+      });
+
+      bridgesVectorSource.addFeature(bridgeFeature);
+    }
+
+    return bridgesVectorSource;
+  }
+
+  sharedCanalsVectorSource(canals: ICanal[]): VectorSource {
+    var canalSources = new VectorSource();
+
+    for (let canal of canals) {
+      var canalFeature = new Feature({
+        geometry: new LineString([[canal.X1, canal.Y1], [canal.X2, canal.Y2]]),
+        name: canal.Name,
+        isCanal: canal.IsCanal,
+        isTunnel: canal.IsTunnel,
+        allBoats: canal.AllBoats,
+      });
+
+      canalSources.addFeature(canalFeature);
+    }
+
+    return canalSources;
+  }
+
+  sharedDeedsVectorSource(deeds: IBoringDeed[]): VectorSource {
+    var deedsSrc = new VectorSource();
+    deedsSrc.ratio = 1;
+
+    for (let deed of deeds) {
+
+      if (deed.name == "Summerholt" ||
+        deed.name == "Greymead" ||
+        deed.name == "Whitefay" ||
+        deed.name == "Glasshollow" ||
+        deed.name == "Newspring" ||
+        deed.name == "Esteron" ||
+        deed.name == "Linton" ||
+        deed.name == "Lormere" ||
+        deed.name == "Vrock Landing") {
+        continue;
+      }
+
+      var deedFeature = new Feature({
+        geometry: new Point([deed.x, deed.y]),
+        name: deed.name,
+        notes: deed.notes
+      });
+
+      deedsSrc.addFeature(deedFeature);
+    }
+
+    return deedsSrc;
+  }
+
+  //#endregion Shared
 
   //#region Xanadu
   XanaduJan2019TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
@@ -167,36 +239,6 @@ export class LayersService {
     });
   }
 
-  XanaduDeedsVectorSource(deeds: IBoringDeed[]): VectorSource {
-    var deedsSrc = new VectorSource();
-    deedsSrc.ratio = 1;
-
-    for (let deed of deeds) {
-
-      if (deed.name == "Summerholt" ||
-        deed.name == "Greymead" ||
-        deed.name == "Whitefay" ||
-        deed.name == "Glasshollow" ||
-        deed.name == "Newspring" ||
-        deed.name == "Esteron" ||
-        deed.name == "Linton" ||
-        deed.name == "Lormere" ||
-        deed.name == "Vrock Landing") {
-        continue;
-      }
-
-      var deedFeature = new Feature({
-        geometry: new Point([deed.x, deed.y]),
-        name: deed.name,
-        notes: deed.notes
-      });
-
-      deedsSrc.addFeature(deedFeature);
-    }
-
-    return deedsSrc;
-  }
-
   XanaduStartingTownsVectorSource(): VectorSource {
     var startingTownsSource = new VectorSource();
 
@@ -211,42 +253,6 @@ export class LayersService {
     }
 
     return startingTownsSource;
-  }
-
-  //#endregion Xanadu
-
-  XanaduBridgesVectorSource(bridges: IBridge[]): VectorSource {
-    var bridgesVectorSource = new VectorSource();
-
-    for (let bridge of bridges) {
-
-      var bridgeFeature = new Feature({
-        geometry: new LineString([[bridge.X1, bridge.Y1], [bridge.X2, bridge.Y2]]),
-        name: bridge.Name,
-      });
-
-      bridgesVectorSource.addFeature(bridgeFeature);
-    }
-
-    return bridgesVectorSource;
-  }
-
-  XanaduCanalsVectorSource(canals: ICanal[]): VectorSource {
-    var canalSources = new VectorSource();
-
-    for (let canal of canals) {
-      var canalFeature = new Feature({
-        geometry: new LineString([[canal.X1, canal.Y1], [canal.X2, canal.Y2]]),
-        name: canal.Name,
-        isCanal: canal.IsCanal,
-        isTunnel: canal.IsTunnel,
-        allBoats: canal.AllBoats,
-      });
-
-      canalSources.addFeature(canalFeature);
-    }
-
-    return canalSources;
   }
 
   XanaduGridVectorSource(): VectorSource {
@@ -310,6 +316,41 @@ export class LayersService {
 
     return gridSrc;
   }
+
+  //#endregion Xanadu
+
+  //#region Pristine
+  PristineJan2019TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: "./../../assets/pristine/jan2019/terra/{z}/{x}/{y}.png",
+      tileGrid: tileGrid
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: true,
+      type: 'base',
+      title: "Terrain (2019 Jan)"
+    });
+  }
+
+  PristineStartingTownsVectorSource(): VectorSource {
+    var startingTownsSource = new VectorSource();
+
+    for (let town of this.pristineStartingTowns) {
+
+      var startingTownFeature = new Feature({
+        geometry: new Polygon([town.Coords]),
+        name: town.Name
+      });
+
+      startingTownsSource.addFeature(startingTownFeature);
+    }
+
+    return startingTownsSource;
+  }
+
+  //#endregion Pristine
 
 }
 

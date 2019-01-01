@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from '@angular/platform-browser';
 
 import OlMap from "ol/Map";
-import OlXYZ from "ol/source/XYZ";
 import { Vector as VectorSource } from "ol/source.js";
 import { Vector as VectorLayer } from "ol/layer.js";
 import OlTileLayer from "ol/layer/Tile";
@@ -13,10 +12,8 @@ import OLControl from "ol/control";
 import { defaults as defaultControls } from "ol/control.js";
 import MousePosition from "ol/control/MousePosition.js";
 import FullScreen from "ol/control/FullScreen.js";
-import { format } from "ol/coordinate.js";
 import Draw from "ol/interaction/Draw.js";
 import Snap from "ol/interaction/Snap.js";
-import { Circle as CircleStyle, Fill, Stroke, Style, RegularShape, Text } from "ol/style.js";
 
 import LayerSwitcher from 'ol-layerswitcher';
 
@@ -208,7 +205,7 @@ export class XanaduComponent implements OnInit {
                     this.canals.push(c);
                 });
 
-                const canalVectorSource = this.layersService.XanaduCanalsVectorSource(this.canals);
+                const canalVectorSource = this.layersService.sharedCanalsVectorSource(this.canals);
 
                 var canalVector = new VectorLayer({
                     source: canalVectorSource,
@@ -233,7 +230,7 @@ export class XanaduComponent implements OnInit {
                     this.bridges.push(b);
                 });
 
-                const bridgeVectorSource = this.layersService.XanaduBridgesVectorSource(this.bridges);
+                const bridgeVectorSource = this.layersService.sharedBridgesVectorSource(this.bridges);
 
                 var bridgeVector = new VectorLayer({
                     source: bridgeVectorSource,
@@ -257,7 +254,7 @@ export class XanaduComponent implements OnInit {
                     this.deeds.push(d);
                 });
 
-                const deedVectorSource = this.layersService.XanaduDeedsVectorSource(this.deeds);
+                const deedVectorSource = this.layersService.sharedDeedsVectorSource(this.deeds);
 
                 var deedVector = new VectorLayer({
                     source: deedVectorSource,

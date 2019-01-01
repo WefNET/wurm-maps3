@@ -11,14 +11,10 @@
             </option>
         </select>
     </div>
-    <!-- <div>
-        <p-button icon="pi pi-cog" (click)="displaySidebar = true" title="Display left tweaking panel"></p-button>
-    </div> -->
     <div>
         <p-button icon="pi pi-pencil" (click)="showDrawingTools()" title="Activate drawing toolage"></p-button>
     </div>
 </div>
 <div class="drawing-tools-panel" [hidden]="!displayDrawingTools">
-    <!-- <p-dropdown [options]="tools" [(ngModel)]="selectedDrawingTool" placeholder="Select a Tool"></p-dropdown> -->
     <p-selectButton [options]="tools" (onOptionClick)="selectTool($event)"></p-selectButton>
 </div>
