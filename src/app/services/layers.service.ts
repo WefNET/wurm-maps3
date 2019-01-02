@@ -334,6 +334,34 @@ export class LayersService {
     });
   }
 
+  PristineJan2019TopoLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: "./../../assets/pristine/jan2019/topo/{z}/{x}/{y}.png",
+      tileGrid: tileGrid
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: false,
+      type: 'base',
+      title: "Topological (2019 Jan)"
+    });
+  }
+
+  PristineJan2019IsoLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: "./../../assets/pristine/jan2019/iso/{z}/{x}/{y}.png",
+      tileGrid: tileGrid
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: true,
+      type: 'base',
+      title: "Isometric (2019 Jan)"
+    });
+  }
+
   PristineStartingTownsVectorSource(): VectorSource {
     var startingTownsSource = new VectorSource();
 
@@ -349,6 +377,67 @@ export class LayersService {
 
     return startingTownsSource;
   }
+
+  PristineGridVectorSource(): VectorSource {
+    var gridSrc = new VectorSource();
+
+    var gridJSON = [];
+
+    // horiz
+    for (var x = 0; x < 20; x++) {
+        var y = -((x * 102) + 87);
+        gridJSON.push({
+            "StartX": 0, "StartY": y, "EndX": 2048, "EndY": y
+        });
+
+        var horizLineFeature = new Feature({
+            geometry: new LineString([[0, y], [2048, y]]),
+            name: ""
+        });
+
+        gridSrc.addFeature(horizLineFeature);
+    }
+
+    // vertical
+    for (var y = 0; y < 20; y++) {
+        var x = (y * 102) + 92;
+        gridJSON.push({
+            "StartX": x, "StartY": 0, "EndX": x, "EndY": -2084
+        });
+
+        var vertLineFeature = new Feature({
+            geometry: new LineString([[x, 0], [x, -2048]]),
+            name: ""
+        });
+
+        gridSrc.addFeature(vertLineFeature);
+    }
+
+    // grid text
+    var gridPoints = [];
+    var gridX = ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"];
+
+    for (var x = 0; x < 20; x++) {
+        var yC = -((x * 102) + 87)
+
+        for (var y = 0; y < 20; y++) {
+            var xC = (y * 102) + 92;
+
+            var yDisplay = y + 7;
+            var gridID = gridX[x] + " " + yDisplay;
+            gridPoints.push({ "cX": xC, "cY": yC, "GridID": gridID });
+
+            var gridNameFeature = new Feature({
+                geometry: new Point([xC - 51, yC + 51]),
+                name: gridID
+            });
+
+            gridSrc.addFeature(gridNameFeature);
+        }
+    }
+
+    return gridSrc;
+}
 
   //#endregion Pristine
 

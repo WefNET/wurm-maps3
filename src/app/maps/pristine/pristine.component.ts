@@ -111,13 +111,13 @@ export class PristineComponent implements OnInit {
     });
 
     this.terrainJan2019Layer = this.layersService.PristineJan2019TerrainLayer(this.tileGrid);
-    this.topoJan2019Layer = this.layersService.XanaduJan2019TopoLayer(this.tileGrid);
-    this.isoJan2019Layer = this.layersService.XanaduJan2019IsoLayer(this.tileGrid);
+    this.topoJan2019Layer = this.layersService.PristineJan2019TopoLayer(this.tileGrid);
+    this.isoJan2019Layer = this.layersService.PristineJan2019IsoLayer(this.tileGrid);
 
-    this.terrainJan2018Layer = this.layersService.XanaduJan2018TerrainLayer(this.tileGrid);
-    this.topoJan2018Layer = this.layersService.XanaduJan2018TopoLayer(this.tileGrid);
-    this.isoJan2018Layer = this.layersService.XanaduJan2018IsoLayer(this.tileGrid);
-    this.routesJan2018Layer = this.layersService.XanaduJan2018RoutesLayer(this.tileGrid);
+    // this.terrainJan2018Layer = this.layersService.XanaduJan2018TerrainLayer(this.tileGrid);
+    // this.topoJan2018Layer = this.layersService.XanaduJan2018TopoLayer(this.tileGrid);
+    // this.isoJan2018Layer = this.layersService.XanaduJan2018IsoLayer(this.tileGrid);
+    // this.routesJan2018Layer = this.layersService.XanaduJan2018RoutesLayer(this.tileGrid);
 
     this.drawingSource = new VectorSource();
     this.drawingVector = new VectorLayer({
@@ -150,7 +150,6 @@ export class PristineComponent implements OnInit {
         this.layerSwitcherControl,
         this.mousePositionControl,
         this.FullScreenControl,
-
       ]),
       layers: [
         new OlLayerGroup({
@@ -160,8 +159,8 @@ export class PristineComponent implements OnInit {
             // this.isoJan2018Layer,
             // this.topoJan2018Layer,
             // this.terrainJan2018Layer,
-            // this.isoJan2019Layer,
-            // this.topoJan2019Layer,
+            this.isoJan2019Layer,
+            this.topoJan2019Layer,
             this.terrainJan2019Layer,
             this.drawingVector
           ]
@@ -178,7 +177,7 @@ export class PristineComponent implements OnInit {
       .subscribe(data => {
 
         // grid
-        const gridVectorSource = this.layersService.XanaduGridVectorSource();
+        const gridVectorSource = this.layersService.PristineGridVectorSource();
 
         var gridVector = new VectorLayer({
           source: gridVectorSource,
