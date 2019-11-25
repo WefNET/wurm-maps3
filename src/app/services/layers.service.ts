@@ -19,6 +19,9 @@ import { format } from "ol/coordinate.js";
 import Draw from "ol/interaction/Draw.js";
 import Snap from "ol/interaction/Snap.js";
 import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style.js";
+import ImageLayer from 'ol/layer/Image';
+import ImageStatic from 'ol/source/ImageStatic';
+import Projection from 'ol/proj/Projection';
 
 import { IBoringDeed, IBridge, ICanal } from './../models/models';
 
@@ -67,10 +70,10 @@ export class LayersService {
   ];
   pristineStartingTowns = [
     {
-        "Name": "Blossom",
-        "Coords": [[869, -688], [869, -719], [838, -719], [838, -688]]
+      "Name": "Blossom",
+      "Coords": [[869, -688], [869, -719], [838, -719], [838, -688]]
     },
-];
+  ];
   constructor() { }
 
   //#region Shared
@@ -141,31 +144,43 @@ export class LayersService {
   //#endregion Shared
 
   //#region Xanadu
-  XanaduJan2019TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
-    var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2019/terrain/{z}/{x}/{y}.png",
-      tileGrid: tileGrid
+  XanaduJan2019TerrainLayer(tileGrid: OLTileGrid): ImageLayer {
+    var projection = new Projection({
+      code: 'xan-terrain-jan2019',
+      units: 'pixels',
+      extent: tileGrid.getExtent()
     });
 
-    return new OlTileLayer({
-      source: source,
-      visible: true,
-      type: 'base',
-      title: "Terrain (2019 Jan)"
+    return new ImageLayer({
+      source: new ImageStatic({
+        attributions: '© <a href="https://wurmonline.com">Wurm Online</a>',
+        url: '../../assets/Maps/Xanadu/xanadu-terrain_181231-104856.png',
+        projection: projection,
+        imageExtent: tileGrid.getExtent(),
+        visible: true,
+        type: 'base',
+        title: 'Terrain (2019 Jan)'
+      })
     });
   }
 
-  XanaduJan2019TopoLayer(tileGrid: OLTileGrid): OlTileLayer {
-    var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2019/topo/{z}/{x}/{y}.png",
-      tileGrid: tileGrid
+  XanaduJan2019TopoLayer(tileGrid: OLTileGrid): ImageLayer {
+    var projection = new Projection({
+      // code: 'xan-topo-jan2019',
+      units: 'pixels',
+      extent: tileGrid.getExtent()
     });
 
-    return new OlTileLayer({
-      source: source,
-      visible: false,
-      type: 'base',
-      title: "Topological (2019 Jan)"
+    return new ImageLayer({
+      source: new ImageStatic({
+        attributions: '© <a href="https://wurmonline.com">Wurm Online</a>',
+        url: '../../assets/Maps/Xanadu/xanadu-topographical_181231-105054.png',
+        projection: projection,
+        imageExtent: tileGrid.getExtent(),
+        visible: false,
+        type: 'base',
+        title: 'Topographic (2019 Jan)'
+      })
     });
   }
 
@@ -385,32 +400,32 @@ export class LayersService {
 
     // horiz
     for (var x = 0; x < 20; x++) {
-        var y = -((x * 102) + 87);
-        gridJSON.push({
-            "StartX": 0, "StartY": y, "EndX": 2048, "EndY": y
-        });
+      var y = -((x * 102) + 87);
+      gridJSON.push({
+        "StartX": 0, "StartY": y, "EndX": 2048, "EndY": y
+      });
 
-        var horizLineFeature = new Feature({
-            geometry: new LineString([[0, y], [2048, y]]),
-            name: ""
-        });
+      var horizLineFeature = new Feature({
+        geometry: new LineString([[0, y], [2048, y]]),
+        name: ""
+      });
 
-        gridSrc.addFeature(horizLineFeature);
+      gridSrc.addFeature(horizLineFeature);
     }
 
     // vertical
     for (var y = 0; y < 20; y++) {
-        var x = (y * 102) + 92;
-        gridJSON.push({
-            "StartX": x, "StartY": 0, "EndX": x, "EndY": -2084
-        });
+      var x = (y * 102) + 92;
+      gridJSON.push({
+        "StartX": x, "StartY": 0, "EndX": x, "EndY": -2084
+      });
 
-        var vertLineFeature = new Feature({
-            geometry: new LineString([[x, 0], [x, -2048]]),
-            name: ""
-        });
+      var vertLineFeature = new Feature({
+        geometry: new LineString([[x, 0], [x, -2048]]),
+        name: ""
+      });
 
-        gridSrc.addFeature(vertLineFeature);
+      gridSrc.addFeature(vertLineFeature);
     }
 
     // grid text
@@ -418,26 +433,26 @@ export class LayersService {
     var gridX = ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"];
 
     for (var x = 0; x < 20; x++) {
-        var yC = -((x * 102) + 87)
+      var yC = -((x * 102) + 87)
 
-        for (var y = 0; y < 20; y++) {
-            var xC = (y * 102) + 92;
+      for (var y = 0; y < 20; y++) {
+        var xC = (y * 102) + 92;
 
-            var yDisplay = y + 7;
-            var gridID = gridX[x] + " " + yDisplay;
-            gridPoints.push({ "cX": xC, "cY": yC, "GridID": gridID });
+        var yDisplay = y + 7;
+        var gridID = gridX[x] + " " + yDisplay;
+        gridPoints.push({ "cX": xC, "cY": yC, "GridID": gridID });
 
-            var gridNameFeature = new Feature({
-                geometry: new Point([xC - 51, yC + 51]),
-                name: gridID
-            });
+        var gridNameFeature = new Feature({
+          geometry: new Point([xC - 51, yC + 51]),
+          name: gridID
+        });
 
-            gridSrc.addFeature(gridNameFeature);
-        }
+        gridSrc.addFeature(gridNameFeature);
+      }
     }
 
     return gridSrc;
-}
+  }
 
   //#endregion Pristine
 

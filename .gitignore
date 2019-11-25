@@ -45,3 +45,154 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/assets/Maps/Affliction/affliction-isometric_181231-103800.png
+src/assets/Maps/Affliction/affliction-terrain_181231-103728.png
+src/assets/Maps/Affliction/affliction-topographical_181231-103744.png
+src/assets/Maps/Affliction/August 2017/Affliction-isometric_170813-054132.png
+src/assets/Maps/Affliction/August 2017/Affliction-terrain_170813-054138.png
+src/assets/Maps/Affliction/August 2017/Affliction-topographical_170813-054124.png
+src/assets/Maps/Affliction/December 2017/Affliction-isometric_171231-045720.png
+src/assets/Maps/Affliction/December 2017/Affliction-terrain_171231-045654.png
+src/assets/Maps/Affliction/December 2017/Affliction-topographical_171231-045707.png
+src/assets/Maps/Affliction/November 2016/Affliction-isometric_161101.png
+src/assets/Maps/Affliction/November 2016/Affliction-terrain_161101.png
+src/assets/Maps/Affliction/November 2016/Affliction-topographical_161101.png
+src/assets/Maps/Celebration/celebration-isometric_181231-103817.png
+src/assets/Maps/Celebration/celebration-terrain_181231-103832.png
+src/assets/Maps/Celebration/celebration-topographical_181231-103840.png
+src/assets/Maps/Celebration/December 2017/Celebration-isometric_171231-050447.png
+src/assets/Maps/Celebration/December 2017/Celebration-routes-20171231.png
+src/assets/Maps/Celebration/December 2017/Celebration-terrain_171231-050456.png
+src/assets/Maps/Celebration/December 2017/Celebration-topographical_171231-050437.png
+src/assets/Maps/Celebration/November 2016/Celebration-isometric_161101.png
+src/assets/Maps/Celebration/November 2016/Celebration-terrain_161101.png
+src/assets/Maps/Celebration/November 2016/Celebration-topographical_161101.png
+src/assets/Maps/Celebration/august 2017/Celebration-isometric_170813-054627.png
+src/assets/Maps/Celebration/august 2017/Celebration-terrain_170813-054614.png
+src/assets/Maps/Celebration/august 2017/Celebration-topographical_170813-054621.png
+src/assets/Maps/Chaos/chaos-isometric_181231-104003.png
+src/assets/Maps/Chaos/chaos-terrain_181231-103935.png
+src/assets/Maps/Chaos/chaos-topographical_181231-103904.png
+src/assets/Maps/Chaos/December 2017/Chaos-isometric_171231-045422.png
+src/assets/Maps/Chaos/December 2017/Chaos-terrain_171231-045251.png
+src/assets/Maps/Chaos/December 2017/Chaos-topographical_171231-045343.png
+src/assets/Maps/Chaos/November 2016/Chaos-isometric_161101.png
+src/assets/Maps/Chaos/November 2016/Chaos-terrain_161101.png
+src/assets/Maps/Chaos/November 2016/Chaos-topographical_161101.png
+src/assets/Maps/Chaos/august 2017/Chaos-isometric_170813-054018.png
+src/assets/Maps/Chaos/august 2017/Chaos-terrain_170813-053823.png
+src/assets/Maps/Chaos/august 2017/Chaos-topographical_170813-053900.png
+src/assets/Maps/Deliverance/deliverance-isometric_181231-104046.png
+src/assets/Maps/Deliverance/deliverance-terrain_181231-104053.png
+src/assets/Maps/Deliverance/deliverance-topographical_181231-104102.png
+src/assets/Maps/Deliverance/August 2017/Deliverance-isometric_170813-054518.png
+src/assets/Maps/Deliverance/August 2017/Deliverance-terrain_170813-054502.png
+src/assets/Maps/Deliverance/August 2017/Deliverance-topographical_170813-054511.png
+src/assets/Maps/Deliverance/December 2017/Deliverance-isometric_171231-050333.png
+src/assets/Maps/Deliverance/December 2017/Deliverance-routes-20171231.png
+src/assets/Maps/Deliverance/December 2017/Deliverance-terrain_171231-050309.png
+src/assets/Maps/Deliverance/December 2017/Deliverance-topographical_171231-050322.png
+src/assets/Maps/Deliverance/November 2016/Deliverance-isometric_161101.png
+src/assets/Maps/Deliverance/November 2016/Deliverance-terrain_161101.png
+src/assets/Maps/Deliverance/November 2016/Deliverance-topographical_161101.png
+src/assets/Maps/Desertion/desertion-isometric_181231-104131.png
+src/assets/Maps/Desertion/desertion-terrain_181231-104137.png
+src/assets/Maps/Desertion/desertion-topographical_181231-104122.png
+src/assets/Maps/Desertion/August 2017/Desertion-isometric_170813-054052.png
+src/assets/Maps/Desertion/August 2017/Desertion-terrain_170813-054058.png
+src/assets/Maps/Desertion/August 2017/Desertion-topographical_170813-054106.png
+src/assets/Maps/Desertion/December 2017/Desertion-isometric_171231-045623.png
+src/assets/Maps/Desertion/December 2017/Desertion-terrain_171231-045630.png
+src/assets/Maps/Desertion/December 2017/Desertion-topographical_171231-045610.png
+src/assets/Maps/Desertion/November 2016/Desertion-isometric_161101.png
+src/assets/Maps/Desertion/November 2016/Desertion-terrain_161101.png
+src/assets/Maps/Desertion/November 2016/Desertion-topographical_161101.png
+src/assets/Maps/Elevation/elevation-isometric_181231-104312.png
+src/assets/Maps/Elevation/elevation-terrain_181231-104155.png
+src/assets/Maps/Elevation/elevation-topographical_181231-104250.png
+src/assets/Maps/Elevation/August 2017/Elevation-isometric_170813-054250.png
+src/assets/Maps/Elevation/August 2017/Elevation-terrain_170813-054200.png
+src/assets/Maps/Elevation/August 2017/Elevation-topographical_170813-054226.png
+src/assets/Maps/Elevation/December 2017/Elevation-isometric_171231-045745.png
+src/assets/Maps/Elevation/December 2017/Elevation-terrain_171231-045818.png
+src/assets/Maps/Elevation/December 2017/Elevation-topographical_171231-045851.png
+src/assets/Maps/Elevation/November 2016/Elevation-isometric_161101.png
+src/assets/Maps/Elevation/November 2016/Elevation-terrain_161101.png
+src/assets/Maps/Elevation/November 2016/Elevation-topographical_161101.png
+src/assets/Maps/Exodus/exodus-isometric_181231-104355.png
+src/assets/Maps/Exodus/exodus-terrain_181231-104402.png
+src/assets/Maps/Exodus/exodus-topographical_181231-104411.png
+src/assets/Maps/Exodus/August 2017/Exodus-isometric_170813-054535.png
+src/assets/Maps/Exodus/August 2017/Exodus-terrain_170813-054548.png
+src/assets/Maps/Exodus/August 2017/Exodus-topographical_170813-054542.png
+src/assets/Maps/Exodus/December 2017/Exodus-isometric_171231-050357.png
+src/assets/Maps/Exodus/December 2017/Exodus-routes-20171231.png
+src/assets/Maps/Exodus/December 2017/Exodus-terrain_171231-050407.png
+src/assets/Maps/Exodus/December 2017/Exodus-topographical_171231-050417.png
+src/assets/Maps/Exodus/November 2016/Exodus-isometric_161101.png
+src/assets/Maps/Exodus/November 2016/Exodus-terrain_161101.png
+src/assets/Maps/Exodus/November 2016/Exodus-topographical_161101.png
+src/assets/Maps/Independence/independence-isometric_181231-104500.png
+src/assets/Maps/Independence/independence-terrain_181231-104516.png
+src/assets/Maps/Independence/independence-topographical_181231-104516.png
+src/assets/Maps/Independence/August 2017/Independence-isometric_170813-054321.png
+src/assets/Maps/Independence/August 2017/Independence-terrain_170813-054418.png
+src/assets/Maps/Independence/August 2017/Independence-topographical_170813-054336.png
+src/assets/Maps/Independence/December 2017/Independence-isometric_171231-050130.png
+src/assets/Maps/Independence/December 2017/Independence-routes-20171231.png
+src/assets/Maps/Independence/December 2017/Independence-terrain_171231-050151.png
+src/assets/Maps/Independence/December 2017/Independence-topographical_171231-050041.png
+src/assets/Maps/Independence/November 2016/Independence-isometric_161101.png
+src/assets/Maps/Independence/November 2016/Independence-terrain_161101.png
+src/assets/Maps/Independence/November 2016/Independence-topographical_161101.png
+src/assets/Maps/Pristine/pristine-isometric_181231-104724.png
+src/assets/Maps/Pristine/pristine-terrain_181231-104559.png
+src/assets/Maps/Pristine/pristine-topographical_181231-104708.png
+src/assets/Maps/Pristine/August 2017/Pristine-isometric_170813-054647.png
+src/assets/Maps/Pristine/August 2017/Pristine-terrain_170813-054658.png
+src/assets/Maps/Pristine/August 2017/Pristine-topographical_170813-054652.png
+src/assets/Maps/Pristine/December 2017/Pristine-isometric_171231-050534.png
+src/assets/Maps/Pristine/December 2017/Pristine-routes-20171231.png
+src/assets/Maps/Pristine/December 2017/Pristine-terrain_171231-050514.png
+src/assets/Maps/Pristine/December 2017/Pristine-topographical_171231-050526.png
+src/assets/Maps/Pristine/November 2016/Pristine-isometric_161101.png
+src/assets/Maps/Pristine/November 2016/Pristine-terrain_161101.png
+src/assets/Maps/Pristine/November 2016/Pristine-topographical_161101.png
+src/assets/Maps/Release/release-isometric_181231-104745.png
+src/assets/Maps/Release/release-terrain_181231-104750.png
+src/assets/Maps/Release/release-topographical_181231-104758.png
+src/assets/Maps/Release/August 2017/Release-isometric_170813-054728.png
+src/assets/Maps/Release/August 2017/Release-terrain_170813-054713.png
+src/assets/Maps/Release/August 2017/Release-topographical_170813-054721.png
+src/assets/Maps/Release/December 2017/Release-isometric_171231-050551.png
+src/assets/Maps/Release/December 2017/Release-routes-20171231.png
+src/assets/Maps/Release/December 2017/Release-terrain_171231-050601.png
+src/assets/Maps/Release/December 2017/Release-topographical_171231-050611.png
+src/assets/Maps/Release/November 2016/Release-isometric_161101.png
+src/assets/Maps/Release/November 2016/Release-terrain_161101.png
+src/assets/Maps/Release/November 2016/Release-topographical_161101.png
+src/assets/Maps/Serenity/serenity-isometric_181231-104823.png
+src/assets/Maps/Serenity/serenity-terrain_181231-104827.png
+src/assets/Maps/Serenity/serenity-topographical_181231-104816.png
+src/assets/Maps/Serenity/August 2017/Serenity-isometric_170813-053959.png
+src/assets/Maps/Serenity/August 2017/Serenity-terrain_170813-053949.png
+src/assets/Maps/Serenity/August 2017/Serenity-topographical_170813-053942.png
+src/assets/Maps/Serenity/December 2017/Serenity-isometric_171231-045459.png
+src/assets/Maps/Serenity/December 2017/Serenity-terrain_171231-045534.png
+src/assets/Maps/Serenity/December 2017/Serenity-topographical_171231-045549.png
+src/assets/Maps/Serenity/November 2016/Serenity-isometric_161101.png
+src/assets/Maps/Serenity/November 2016/Serenity-terrain_161101.png
+src/assets/Maps/Serenity/November 2016/Serenity-topographical_161101.png
+src/assets/Maps/Xanadu/xanadu-isometric_181231-105300.png
+src/assets/Maps/Xanadu/xanadu-terrain_181231-104856.png
+src/assets/Maps/Xanadu/xanadu-topographical_181231-105054.png
+src/assets/Maps/Xanadu/August 2017/Xanadu-isometric_170813-054811.png
+src/assets/Maps/Xanadu/August 2017/Xanadu-terrain_170813-055134.png
+src/assets/Maps/Xanadu/August 2017/Xanadu-topographical_170813-054935.png
+src/assets/Maps/Xanadu/December 2017/Xanadu-isometric_171231-051151.png
+src/assets/Maps/Xanadu/December 2017/Xanadu-routes-20171231.png
+src/assets/Maps/Xanadu/December 2017/Xanadu-terrain_171231-051433.png
+src/assets/Maps/Xanadu/December 2017/Xanadu-topographical_171231-050709.png
+src/assets/Maps/Xanadu/November 2016/Xanadu-isometric_161101.png
+src/assets/Maps/Xanadu/November 2016/Xanadu-terrain_161101.png
+src/assets/Maps/Xanadu/November 2016/Xanadu-topographical_161101.png

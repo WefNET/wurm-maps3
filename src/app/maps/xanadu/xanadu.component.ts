@@ -5,7 +5,8 @@ import OlMap from "ol/Map";
 import { Vector as VectorSource } from "ol/source.js";
 import { Vector as VectorLayer } from "ol/layer.js";
 import OlTileLayer from "ol/layer/Tile";
-import OlLayerGroup from 'ol/layer/Group';
+// import OlLayerGroup from 'ol/layer/Group';
+import LayerGroup from 'ol/layer/Group';
 import OlView from "ol/View";
 import OLTileGrid from "ol/tilegrid/TileGrid";
 import OLControl from "ol/control";
@@ -14,6 +15,7 @@ import MousePosition from "ol/control/MousePosition.js";
 import FullScreen from "ol/control/FullScreen.js";
 import Draw from "ol/interaction/Draw.js";
 import Snap from "ol/interaction/Snap.js";
+import ImageLayer from 'ol/layer/Image';
 
 import LayerSwitcher from 'ol-layerswitcher';
 
@@ -44,12 +46,12 @@ export class XanaduComponent implements OnInit {
     isoJan2018Layer: OlTileLayer;
     routesJan2018Layer: OlTileLayer;
 
-    terrainJan2019Layer: OlTileLayer;
-    topoJan2019Layer: OlTileLayer;
+    terrainJan2019Layer: ImageLayer;
+    topoJan2019Layer: ImageLayer;
     isoJan2019Layer: OlTileLayer;
     routesJan2019Layer: OlTileLayer;
 
-    overlayGroup: OlLayerGroup;
+    overlayGroup: LayerGroup;
 
     controls: OLControl[];
     layerSwitcherControl: LayerSwitcher;
@@ -87,7 +89,8 @@ export class XanaduComponent implements OnInit {
         private styles: StyleService,
         private layersService: LayersService,
         private sheetsService: SheetsService,
-        private title: Title) {
+        private title: Title,
+        private messageService: MessageService) {
 
         for (var z = 0; z <= this.mapMaxZoom; z++) {
             this.mapResolutions.push(
@@ -136,7 +139,7 @@ export class XanaduComponent implements OnInit {
     }
 
     renderMapWithLayers() {
-        this.overlayGroup = new OlLayerGroup({
+        this.overlayGroup = new LayerGroup({
             title: 'Overlays',
             layers: [
             ]
@@ -151,14 +154,14 @@ export class XanaduComponent implements OnInit {
 
             ]),
             layers: [
-                new OlLayerGroup({
+                new LayerGroup({
                     'title': 'Base maps',
                     layers: [
-                        this.routesJan2018Layer,
-                        this.isoJan2018Layer,
-                        this.topoJan2018Layer,
-                        this.terrainJan2018Layer,
-                        this.isoJan2019Layer,
+                        // this.routesJan2018Layer,
+                        // this.isoJan2018Layer,
+                        // this.topoJan2018Layer,
+                        // this.terrainJan2018Layer,
+                        // this.isoJan2019Layer,
                         this.topoJan2019Layer,
                         this.terrainJan2019Layer,
                         this.drawingVector
@@ -166,7 +169,8 @@ export class XanaduComponent implements OnInit {
                 }),
                 this.overlayGroup
             ],
-            view: this.view
+            view: this.view,
+            renderer: 'webgl'
         });
     }
 
@@ -257,6 +261,7 @@ export class XanaduComponent implements OnInit {
                 const deedVectorSource = this.layersService.sharedDeedsVectorSource(this.deeds);
 
                 var deedVector = new VectorLayer({
+                    renderMode: 'image',
                     source: deedVectorSource,
                     title: 'Deeds',
                     style: this.styles.deedStyleFunction
@@ -275,6 +280,7 @@ export class XanaduComponent implements OnInit {
 
                 this.overlayGroup.getLayers().push(startingDeedsVector);
 
+                this.messageService.add({severity:'success', summary:'Map Data Loaded', detail: 'All good here.. don\'t worry'});
             });
     }
 
