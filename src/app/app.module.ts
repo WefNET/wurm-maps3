@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { XanaduComponent } from './maps/xanadu/xanadu.component';
-import { DeliComponent } from './maps/deli/deli.component';
 import { PristineComponent } from './maps/pristine/pristine.component'
 
 import { CommonService } from './services/common.service'
@@ -29,7 +28,6 @@ import { LayersService } from './services/layers.service';
     AppComponent,
     HomeComponent,
     XanaduComponent,
-    DeliComponent,
     PristineComponent
   ],
   imports: [
