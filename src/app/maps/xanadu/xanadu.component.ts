@@ -41,15 +41,10 @@ export class XanaduComponent implements OnInit {
     map: OlMap;
     view: OlView;
 
-    terrainJan2018Layer: OlTileLayer;
-    topoJan2018Layer: OlTileLayer;
-    isoJan2018Layer: OlTileLayer;
-    routesJan2018Layer: OlTileLayer;
-
-    terrainJan2019Layer: ImageLayer;
-    topoJan2019Layer: ImageLayer;
-    isoJan2019Layer: OlTileLayer;
-    routesJan2019Layer: OlTileLayer;
+    terrainJan2020Layer: OlTileLayer;
+    topoJan2020Layer: OlTileLayer;
+    isoJan2020Layer: OlTileLayer;
+    routesJan2020Layer: OlTileLayer;
 
     overlayGroup: LayerGroup;
 
@@ -112,14 +107,10 @@ export class XanaduComponent implements OnInit {
             resolutions: this.mapResolutions
         });
 
-        this.terrainJan2019Layer = this.layersService.XanaduJan2019TerrainLayer(this.tileGrid);
-        this.topoJan2019Layer = this.layersService.XanaduJan2019TopoLayer(this.tileGrid);
-        this.isoJan2019Layer = this.layersService.XanaduJan2019IsoLayer(this.tileGrid);
-
-        this.terrainJan2018Layer = this.layersService.XanaduJan2018TerrainLayer(this.tileGrid);
-        this.topoJan2018Layer = this.layersService.XanaduJan2018TopoLayer(this.tileGrid);
-        this.isoJan2018Layer = this.layersService.XanaduJan2018IsoLayer(this.tileGrid);
-        this.routesJan2018Layer = this.layersService.XanaduJan2018RoutesLayer(this.tileGrid);
+        this.terrainJan2020Layer = this.layersService.XanaduTerrainLayer(this.tileGrid);
+        this.topoJan2020Layer = this.layersService.XanaduTopoLayer(this.tileGrid);
+        this.isoJan2020Layer = this.layersService.XanaduIsoLayer(this.tileGrid);
+        this.routesJan2020Layer = this.layersService.XanaduRoutesLayer(this.tileGrid);
 
         this.drawingSource = new VectorSource();
         this.drawingVector = new VectorLayer({
@@ -157,13 +148,10 @@ export class XanaduComponent implements OnInit {
                 new LayerGroup({
                     'title': 'Base maps',
                     layers: [
-                        // this.routesJan2018Layer,
-                        // this.isoJan2018Layer,
-                        // this.topoJan2018Layer,
-                        // this.terrainJan2018Layer,
-                        // this.isoJan2019Layer,
-                        this.topoJan2019Layer,
-                        this.terrainJan2019Layer,
+                        this.routesJan2020Layer,
+                        this.isoJan2020Layer,
+                        this.topoJan2020Layer,
+                        this.terrainJan2020Layer,
                         this.drawingVector
                     ]
                 }),

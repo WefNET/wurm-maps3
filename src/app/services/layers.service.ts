@@ -144,49 +144,24 @@ export class LayersService {
   //#endregion Shared
 
   //#region Xanadu
-  XanaduJan2019TerrainLayer(tileGrid: OLTileGrid): ImageLayer {
-    var projection = new Projection({
-      code: 'xan-terrain-jan2019',
-      units: 'pixels',
-      extent: tileGrid.getExtent()
-    });
-
-    return new ImageLayer({
-      source: new ImageStatic({
-        attributions: '© <a href="https://wurmonline.com">Wurm Online</a>',
-        url: '../../assets/Maps/Xanadu/xanadu-terrain_181231-104856.png',
-        projection: projection,
-        imageExtent: tileGrid.getExtent(),
-        visible: true,
-        type: 'base',
-        title: 'Terrain (2019 Jan)'
-      })
-    });
-  }
-
-  XanaduJan2019TopoLayer(tileGrid: OLTileGrid): ImageLayer {
-    var projection = new Projection({
-      // code: 'xan-topo-jan2019',
-      units: 'pixels',
-      extent: tileGrid.getExtent()
-    });
-
-    return new ImageLayer({
-      source: new ImageStatic({
-        attributions: '© <a href="https://wurmonline.com">Wurm Online</a>',
-        url: '../../assets/Maps/Xanadu/xanadu-topographical_181231-105054.png',
-        projection: projection,
-        imageExtent: tileGrid.getExtent(),
-        visible: false,
-        type: 'base',
-        title: 'Topographic (2019 Jan)'
-      })
-    });
-  }
-
-  XanaduJan2019IsoLayer(tileGrid: OLTileGrid): OlTileLayer {
+  XanaduTerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2019/iso/{z}/{x}/{y}.png",
+      url: 'https://wurmmaptiles.blob.core.windows.net/xan2020terrain/xanadu-terrain_200111-031655/{z}/{x}/{y}.png',
+      tileGrid: tileGrid,
+      attribution: "I have a large penis"
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: true,
+      type: 'base',
+      title: "Terrain (2020 Jan)",
+    });
+  }
+
+  XanaduTopoLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: 'https://wurmmaptiles.blob.core.windows.net/xan2020topo/xanadu-topographical_200111-031542/{z}/{x}/{y}.png',
       tileGrid: tileGrid
     });
 
@@ -194,13 +169,13 @@ export class LayersService {
       source: source,
       visible: false,
       type: 'base',
-      title: "Isologic (2019 Jan)"
+      title: "Topographical (2020 Jan)"
     });
   }
 
-  XanaduJan2018TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
+  XanaduIsoLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2018/terrain/{z}/{x}/{y}.png",
+      url: 'https://wurmmaptiles.blob.core.windows.net/xan2020iso/xanadu-isometric_200111-031806/{z}/{x}/{y}.png',
       tileGrid: tileGrid
     });
 
@@ -208,13 +183,13 @@ export class LayersService {
       source: source,
       visible: false,
       type: 'base',
-      title: "Terrain (2018 Jan)"
+      title: "Isometric (2020 Jan)"
     });
   }
 
-  XanaduJan2018TopoLayer(tileGrid: OLTileGrid): OlTileLayer {
+  XanaduRoutesLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2018/topo/{z}/{x}/{y}.png",
+      url: 'https://wurmmaptiles.blob.core.windows.net/xan2020routes/routes/{z}/{x}/{y}.png',
       tileGrid: tileGrid
     });
 
@@ -222,38 +197,10 @@ export class LayersService {
       source: source,
       visible: false,
       type: 'base',
-      title: "Topological (2018 Jan)"
+      title: "Routes (2020 Jan)"
     });
   }
-
-  XanaduJan2018IsoLayer(tileGrid: OLTileGrid): OlTileLayer {
-    var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2018/iso/{z}/{x}/{y}.png",
-      tileGrid: tileGrid
-    });
-
-    return new OlTileLayer({
-      source: source,
-      visible: false,
-      type: 'base',
-      title: "Isologic (2018 Jan)"
-    });
-  }
-
-  XanaduJan2018RoutesLayer(tileGrid: OLTileGrid): OlTileLayer {
-    var source = new OlXYZ({
-      url: "./../../assets/xanadu/jan2018/routes/{z}/{x}/{y}.png",
-      tileGrid: tileGrid
-    });
-
-    return new OlTileLayer({
-      source: source,
-      visible: false,
-      type: 'base',
-      title: "Routes (2018 Jan)"
-    });
-  }
-
+  
   XanaduStartingTownsVectorSource(): VectorSource {
     var startingTownsSource = new VectorSource();
 
