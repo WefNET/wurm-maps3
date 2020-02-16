@@ -144,11 +144,24 @@ export class LayersService {
   //#endregion Shared
 
   //#region Xanadu
+  XanaduJan2019TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: "http://wurmonlinemaps.com/assets/xanadu/jan2019/terrain/{z}/{x}/{y}.png",
+      tileGrid: tileGrid
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: true,
+      type: 'base',
+      title: "Terrain (2019 Jan)"
+    });
+  }
+
   XanaduTerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
       url: 'https://wurmmaptiles.blob.core.windows.net/xan2020terrain/xanadu-terrain_200111-031655/{z}/{x}/{y}.png',
       tileGrid: tileGrid,
-      attribution: "I have a large penis"
     });
 
     return new OlTileLayer({
@@ -284,7 +297,7 @@ export class LayersService {
   //#region Pristine
   PristineJan2019TerrainLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/pristine/jan2019/terra/{z}/{x}/{y}.png",
+      url: "https://wurmmaptiles.blob.core.windows.net/pristine2020terr/pristine-terrain_200111-031509/{z}/{x}/{y}.png",
       tileGrid: tileGrid
     });
 
@@ -292,13 +305,13 @@ export class LayersService {
       source: source,
       visible: true,
       type: 'base',
-      title: "Terrain (2019 Jan)"
+      title: "Terrain (2020 Jan)"
     });
   }
 
   PristineJan2019TopoLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/pristine/jan2019/topo/{z}/{x}/{y}.png",
+      url: "https://wurmmaptiles.blob.core.windows.net/pristine2020topo/pristine-topographical_200111-031507/{z}/{x}/{y}.png",
       tileGrid: tileGrid
     });
 
@@ -306,13 +319,13 @@ export class LayersService {
       source: source,
       visible: false,
       type: 'base',
-      title: "Topological (2019 Jan)"
+      title: "Topological (2020 Jan)"
     });
   }
 
   PristineJan2019IsoLayer(tileGrid: OLTileGrid): OlTileLayer {
     var source = new OlXYZ({
-      url: "./../../assets/pristine/jan2019/iso/{z}/{x}/{y}.png",
+      url: "https://wurmmaptiles.blob.core.windows.net/pristine2020iso/pristine-isometric_200111-031512/{z}/{x}/{y}.png",
       tileGrid: tileGrid
     });
 

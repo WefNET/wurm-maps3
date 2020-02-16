@@ -22,12 +22,14 @@ import { StyleService } from './services/style.service'
 import { SheetsService } from './services/sheets.service'
 import { LayersService } from './services/layers.service';
 
+import { XanaduSideBySideComponent } from './maps/xanadu-side-by-side/xanadu-side-by-side.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     XanaduComponent,
+    XanaduSideBySideComponent,
     PristineComponent
   ],
   imports: [

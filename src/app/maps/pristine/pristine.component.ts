@@ -114,11 +114,6 @@ export class PristineComponent implements OnInit {
     this.topoJan2019Layer = this.layersService.PristineJan2019TopoLayer(this.tileGrid);
     this.isoJan2019Layer = this.layersService.PristineJan2019IsoLayer(this.tileGrid);
 
-    // this.terrainJan2018Layer = this.layersService.XanaduJan2018TerrainLayer(this.tileGrid);
-    // this.topoJan2018Layer = this.layersService.XanaduJan2018TopoLayer(this.tileGrid);
-    // this.isoJan2018Layer = this.layersService.XanaduJan2018IsoLayer(this.tileGrid);
-    // this.routesJan2018Layer = this.layersService.XanaduJan2018RoutesLayer(this.tileGrid);
-
     this.drawingSource = new VectorSource();
     this.drawingVector = new VectorLayer({
       name: "Drawing Layer",
