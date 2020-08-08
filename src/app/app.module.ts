@@ -15,7 +15,8 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { XanaduComponent } from './maps/xanadu/xanadu.component';
-import { PristineComponent } from './maps/pristine/pristine.component'
+import { PristineComponent } from './maps/pristine/pristine.component';
+import { HarmonyComponent } from './maps/harmony/harmony.component';
 
 import { CommonService } from './services/common.service'
 import { StyleService } from './services/style.service'
@@ -30,7 +31,8 @@ import { XanaduSideBySideComponent } from './maps/xanadu-side-by-side/xanadu-sid
     HomeComponent,
     XanaduComponent,
     XanaduSideBySideComponent,
-    PristineComponent
+    PristineComponent,
+    HarmonyComponent
   ],
   imports: [
     BrowserModule,

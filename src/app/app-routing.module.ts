@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { XanaduComponent } from './maps/xanadu/xanadu.component';
 import { PristineComponent } from './maps/pristine/pristine.component';
 import { XanaduSideBySideComponent } from './maps/xanadu-side-by-side/xanadu-side-by-side.component';
+import { HarmonyComponent } from './maps/harmony/harmony.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'xanadu-side-by-side', component: XanaduSideBySideComponent },
   { path: 'maps/xanadu', component: XanaduComponent },
   { path: 'pristine', component: PristineComponent },
+  { path: 'harmony', component: HarmonyComponent },
 ];
 
 @NgModule({

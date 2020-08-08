@@ -74,6 +74,22 @@ export class LayersService {
       "Coords": [[869, -688], [869, -719], [838, -719], [838, -688]]
     },
   ];
+  harmonyStartingTowns = [
+    // {
+    //   "Name": "Heartland",
+    //   "Coords": [[992, -722], [992, -722], [999, -730], [999, -730]]
+    // },
+    {
+      "Name": "Harmony Bay",
+      "X": 996, 
+      "Y": -725,
+    },
+    {
+      "Name": "Heartland",
+      "X": 792, 
+      "Y": -419,
+    },
+  ];
   constructor() { }
 
   //#region Shared
@@ -230,7 +246,7 @@ export class LayersService {
       title: "Routes (2020 Jan)"
     });
   }
-  
+
   XanaduStartingTownsVectorSource(): VectorSource {
     var startingTownsSource = new VectorSource();
 
@@ -433,5 +449,37 @@ export class LayersService {
 
   //#endregion Pristine
 
+  //#region Harmony 
+  HarmonyInGameLayer(tileGrid: OLTileGrid): OlTileLayer {
+    var source = new OlXYZ({
+      url: "https://wurmmaptiles.blob.core.windows.net//harmonyingame/Harmony4/{z}/{x}/{y}.png",
+      tileGrid: tileGrid
+    });
+
+    return new OlTileLayer({
+      source: source,
+      visible: true,
+      type: 'base',
+      title: "In Game (2020 July)"
+    });
+  }
+
+  HarmonyStartingTownsVectorSource(): VectorSource {
+    var startingTownsSource = new VectorSource();
+    startingTownsSource.ratio = 1;
+
+    for (let town of this.harmonyStartingTowns) {
+      var deedFeature = new Feature({
+        geometry: new Point([town.X, town.Y]),
+        name: town.Name,
+      });
+
+      startingTownsSource.addFeature(deedFeature);
+    }
+
+    return startingTownsSource;
+  }
+
+  //#endregion Harmony   
 }
 

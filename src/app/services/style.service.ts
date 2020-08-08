@@ -81,6 +81,44 @@ export class StyleService {
         ]
     }
 
+    deedStyleFunctionHarmony(feature, resolution) {
+        let fontSize: number = resolution <= 0.125 ? 16 : 12;
+        let name: string = feature.get('name');
+
+        let notes: string = feature.get('notes');
+        let isMarket: boolean = notes != null ? notes.toLowerCase().indexOf("market") >= 0 : false;
+
+        return [
+            new Style({
+                image: new RegularShape({
+                    points: 4,
+                    radius: (6 / resolution),
+                    angle: Math.PI / 4,
+                    fill: new Fill({
+                        color: "rgba(255, 0, 0, 0.4)"
+                    }),
+                    stroke: new Stroke({
+                        color: isMarket ? "Orange" : "transparent",
+                        width: isMarket ? 1 / resolution : 0,
+                    })
+                }),
+                text: new Text({
+                    font: '' + fontSize + 'px Calibri,sans-serif',
+                    text: resolution < 0.5 ? feature.get('name') : '',
+                    textBaseline: 'middle',
+                    textAlign: 'center',
+                    fill: new Fill({
+                        color: "White"
+                    }),
+                    stroke: new Stroke({
+                        color: "Black",
+                        width: 1
+                    })
+                })
+            })
+        ]
+    }
+
     startingTownStyleFunction(feature, resolution) {
         var name = feature.get('name');
 
@@ -107,6 +145,40 @@ export class StyleService {
                         width: 1,
                         offsetY: 1,
                         offsetX: 2
+                    })
+                })
+            })
+        ]
+    }
+
+    startingTownStyleFunctionHarmony(feature, resolution) {
+        let fontSize: number = resolution <= 0.125 ? 16 : 12;
+
+        return [
+            new Style({
+                image: new RegularShape({
+                    points: 4,
+                    radius: (11 / resolution) + 4,
+                    angle: Math.PI / 4,
+                    fill: new Fill({
+                        color: "rgba(0, 0, 255, 0.4)"
+                    }),
+                    stroke: new Stroke({
+                        color: "rgba(0, 0, 255, 1)",
+                        width: 1
+                    })
+                }),
+                text: new Text({
+                    font: '' + fontSize + 'px Calibri,sans-serif',
+                    text: resolution < 5 ? feature.get('name') : '',
+                    textBaseline: 'middle',
+                    textAlign: 'center',
+                    fill: new Fill({
+                        color: "White"
+                    }),
+                    stroke: new Stroke({
+                        color: "Black",
+                        width: 1
                     })
                 })
             })
