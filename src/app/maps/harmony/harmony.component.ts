@@ -170,33 +170,33 @@ export class HarmonyComponent implements OnInit {
 
         // this.overlayGroup.getLayers().push(gridVector);
 
-        // // canale 
-        // var canals = data["valueRanges"][1].values;
+        // canale 
+        var canals = data["valueRanges"][1].values;
 
-        // canals.forEach(canal => {
-        //   var c = new ICanal();
+        canals.forEach(canal => {
+          var c = new ICanal();
 
-        //   c.Name = canal[0];
-        //   c.X1 = canal[1];
-        //   c.Y1 = 0 - Number(canal[2]);
-        //   c.X2 = canal[3];
-        //   c.Y2 = 0 - Number(canal[4]);
-        //   c.IsCanal = canal[5] == "TRUE";
-        //   c.IsTunnel = canal[6] == "TRUE";
-        //   c.AllBoats = canal[7] == "TRUE";
+          c.Name = canal[0];
+          c.X1 = canal[1];
+          c.Y1 = 0 - Number(canal[2]);
+          c.X2 = canal[3];
+          c.Y2 = 0 - Number(canal[4]);
+          c.IsCanal = canal[5] === "TRUE";
+          c.IsTunnel = canal[6] === "TRUE";
+          c.AllBoats = canal[7] === "TRUE";
 
-        //   this.canals.push(c);
-        // });
+          this.canals.push(c);
+        });
 
-        // const canalVectorSource = this.layersService.sharedCanalsVectorSource(this.canals);
+        const canalVectorSource = this.layersService.sharedCanalsVectorSource(this.canals);
 
-        // var canalVector = new VectorLayer({
-        //   source: canalVectorSource,
-        //   title: 'Canals',
-        //   style: this.styles.canalStyleFunction
-        // })
+        var canalVector = new VectorLayer({
+          source: canalVectorSource,
+          title: 'Canals',
+          style: this.styles.canalStyleFunctionHarmony
+        })
 
-        // this.overlayGroup.getLayers().push(canalVector);
+        this.overlayGroup.getLayers().push(canalVector);
 
         // // bridges
         // var bridges = data["valueRanges"][2].values;
@@ -265,6 +265,17 @@ export class HarmonyComponent implements OnInit {
         this.overlayGroup.getLayers().push(startingDeedsVector);
 
       });
+    }
+
+    findDeed(args) {
+
+        let deed = this.deeds[args.target.value];
+
+        var extent = [deed.x - 10, deed.y - 10, deed.x + 10, deed.y + 10];
+        var view = this.map.getView();
+        var size = this.map.getSize();
+
+        view.fit(extent, size);
     }
 
     //#region Drawing Tools

@@ -104,7 +104,7 @@ export class StyleService {
                 }),
                 text: new Text({
                     font: '' + fontSize + 'px Calibri,sans-serif',
-                    text: resolution < 0.5 ? feature.get('name') : '',
+                    text: resolution < 1 ? feature.get('name') : '',
                     textBaseline: 'middle',
                     textAlign: 'center',
                     fill: new Fill({
@@ -258,7 +258,52 @@ export class StyleService {
             }),
 
         ]
+    }
 
+    canalStyleFunctionHarmony(feature, resolution) {
+        var isCanal = feature.get('isCanal');
+        var isTunnel = feature.get('isTunnel');
+        var allBoats = feature.get('allBoats')
+
+        let fontSize: number = resolution <= 0.125 ? 16 : 12;
+
+        let canalName = feature.get('name') != null ? feature.get('name') : '';
+        let canalText: string = `${canalName} `;
+
+        if (isCanal === true && isTunnel === true) {
+            canalText += `\n(${isCanal === true ? 'Canal /' : ''} ${isTunnel === true ? 'Tunnel /' : ''} ${allBoats === true ? 'All Boats' : 'Knarrs only'})`;
+        }
+        else if (isCanal === true && isTunnel === false) {
+            canalText += `\n(${isCanal === true ? 'Canal /' : ''} ${allBoats === true ? 'All Boats' : 'Knarrs only'})`;
+        }
+        else if (isCanal === false && isTunnel === true) {
+            canalText += `\n(Tunnel)`;
+        }
+
+        return [
+            new Style({
+                stroke: new Stroke({
+                    width: 2 / resolution,
+                    color: "rgba(0, 191, 255, 0.4)",
+                }),
+                text: new Text({
+                    font: '' + fontSize + 'px Calibri,sans-serif',
+                    text: resolution < 0.25 ? canalText : '',
+                    textBaseline: 'middle',
+                    textAlign: 'center',
+                    // offsetY: 12,
+                    fill: new Fill({
+                        // color: '#FFF'
+                        color: "White"
+                    }),
+                    stroke: new Stroke({
+                        color: 'Black',
+                        width: 1
+                    })
+                })
+            }),
+
+        ]
     }
 
     gridStyleFunction(feature, resolution) {
