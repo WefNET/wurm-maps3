@@ -14,7 +14,7 @@ import FullScreen from "ol/control/FullScreen.js";
 import { format } from "ol/coordinate.js";
 import Draw from "ol/interaction/Draw.js";
 import Snap from "ol/interaction/Snap.js";
-import { Circle as CircleStyle, Fill, Stroke, Style, RegularShape, Text } from "ol/style.js";
+import { Circle as CircleStyle, Fill, Stroke, Style, RegularShape, Text, Icon } from "ol/style.js";
 
 @Injectable({
     providedIn: 'root'
@@ -218,5 +218,69 @@ export class StyleService {
                 })
             })
         ]
+    }
+
+    landmarkStyleFunction(feature, resolution) {
+        let fontSize: number = resolution <= 0.125 ? 16 : 12;
+
+        let name: string = feature.get('name');
+        let type: string = feature.get('type');
+
+        if (type === 'BodyOfWater') {
+            return [
+                new Style({
+                    text: new Text({
+                        font: "" + fontSize + "px 'IM Fell English SC', serif",
+                        text: resolution <= 1 ? name : '',
+                        textBaseline: 'middle',
+                        textAlign: 'center',
+                        fill: new Fill({
+                            color: "rgba(255, 0, 0, 0.9)"
+                        }),
+                    })
+                })
+            ]
+        }
+
+        if (type === 'Obelisk') {
+
+            const obe = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAAb0lEQVQ4jcWQSw6AIAwFRxNugufwUt4WNu7FK+CmC9JQQ43GlzTl0w6vwIdagV2yWwE4gU1y8AIWIMk6A9EqnAcASfZuQG4cuAFRAR6N8JqD2z/oqQC1E8cooHrO9QilKdbBiAvrdfN+cjRbfT/rAilOIm8zKT9iAAAAAElFTkSuQmCC';
+
+            return [
+                new Style({
+                    image: new Icon({
+                        opacity: 1,
+                        src: obe,
+                        scale: 1 / resolution
+                    })
+                })
+            ];
+        }
+
+        // return [
+        //     new Style({
+        //         image: new RegularShape({
+        //             points: 4,
+        //             radius: (11 / resolution) + 4,
+        //             angle: Math.PI / 4,
+        //             fill: new Fill({
+        //                 color: "rgba(255, 0, 0, 0.4)"
+        //             }),
+        //         }),
+        //         text: new Text({
+        //             font: '' + fontSize + 'px Calibri,sans-serif',
+        //             text: resolution < 4 ? feature.get('name') : '',
+        //             textBaseline: 'middle',
+        //             textAlign: 'center',
+        //             fill: new Fill({
+        //                 color: "White"
+        //             }),
+        //             stroke: new Stroke({
+        //                 color: "Black",
+        //                 width: 1
+        //             })
+        //         })
+        //     })
+        // ]
     }
 }

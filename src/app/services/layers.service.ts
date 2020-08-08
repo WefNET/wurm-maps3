@@ -23,7 +23,7 @@ import ImageLayer from 'ol/layer/Image';
 import ImageStatic from 'ol/source/ImageStatic';
 import Projection from 'ol/proj/Projection';
 
-import { IBoringDeed, IBridge, ICanal } from './../models/models';
+import { IBoringDeed, IBridge, ICanal, ILandmark } from './../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -109,6 +109,23 @@ export class LayersService {
     }
 
     return canalSources;
+  }
+
+  sharedLandmarkVectorSource(landmarks: ILandmark[]): VectorSource {
+    var landmarksSrc = new VectorSource();
+
+    for (let l of landmarks) {
+
+      var landmarkFeature = new Feature({
+        geometry: new Point([l.X1, l.Y1]),
+        type: l.LandmarkType,
+        name: l.Name
+      });
+
+      landmarksSrc.addFeature(landmarkFeature);
+    }
+
+    return landmarksSrc;
   }
 
   sharedDeedsVectorSource(deeds: IBoringDeed[]): VectorSource {

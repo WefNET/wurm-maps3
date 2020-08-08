@@ -26,7 +26,7 @@ import { StyleService } from './../../services/style.service';
 import { LayersService } from './../../services/layers.service';
 import { SheetsService } from './../../services/sheets.service';
 
-import { IBoringDeed, IBridge, ICanal } from './../../models/models';
+import { IBoringDeed, IBridge, ICanal, ILandmark } from './../../models/models';
 
 @Component({
     selector: "app-xanadu",
@@ -79,6 +79,7 @@ export class XanaduComponent implements OnInit {
     deeds: IBoringDeed[] = [];
     bridges: IBridge[] = [];
     canals: ICanal[] = [];
+    landmarks: ILandmark[] = [];
 
     constructor(private common: CommonService,
         private styles: StyleService,
@@ -166,6 +167,7 @@ export class XanaduComponent implements OnInit {
 
         this.sheetsService.getXanaduData()
             .subscribe(data => {
+                // console.log('Xanadata', data);
 
                 // grid
                 const gridVectorSource = this.layersService.XanaduGridVectorSource();
@@ -178,6 +180,32 @@ export class XanaduComponent implements OnInit {
                 })
 
                 this.overlayGroup.getLayers().push(gridVector);
+
+                // landmarks
+                var landmarksData = data["valueRanges"][3].values;
+
+                landmarksData.forEach(l => {
+                    let d = new ILandmark();
+
+                    d.Name = l[0];
+                    d.X1 = l[1];
+                    d.Y1 = l[2];
+                    d.LandmarkType = l[3];
+                    // d.Notes = 1[4];
+
+                    this.landmarks.push(d);
+                });
+
+                const landmarkVectorSource = this.layersService.sharedLandmarkVectorSource(this.landmarks);
+
+                var landmarkVector = new VectorLayer({
+                    source: landmarkVectorSource,
+                    title: 'Landmarks',
+                    visible: false,
+                    style: this.styles.landmarkStyleFunction
+                })
+
+                this.overlayGroup.getLayers().push(landmarkVector);
 
                 // canale 
                 var canals = data["valueRanges"][1].values;
@@ -267,7 +295,7 @@ export class XanaduComponent implements OnInit {
                 })
 
                 this.overlayGroup.getLayers().push(startingDeedsVector);
-
+                
                 this.messageService.add({severity:'success', summary:'Map Data Loaded', detail: 'All good here.. don\'t worry'});
             });
     }

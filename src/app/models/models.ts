@@ -26,3 +26,11 @@ export class IBridge {
     X2: number;
     Y2: number;
 }
+
+export class ILandmark {
+    Name: string;
+    X1: number;
+    Y1: number;
+    LandmarkType: string;
+    Notes: string;
+}
