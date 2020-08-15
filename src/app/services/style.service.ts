@@ -50,6 +50,8 @@ export class StyleService {
         let notes: string = feature.get('notes');
         let isMarket: boolean = notes != null ? notes.toLowerCase().indexOf("market") >= 0 : false;
 
+        let opacity = resolution < 1 ? resolution + 0.25 : 1;
+
         return [
             new Style({
                 image: new RegularShape({
@@ -57,7 +59,7 @@ export class StyleService {
                     radius: (11 / resolution) + 4,
                     angle: Math.PI / 4,
                     fill: new Fill({
-                        color: "rgba(255, 0, 0, 0.4)"
+                        color: `rgba( 255, 245, 87 , ${opacity})`
                     }),
                     stroke: new Stroke({
                         color: isMarket ? "Orange" : "transparent",
@@ -85,8 +87,15 @@ export class StyleService {
         let fontSize: number = resolution <= 0.125 ? 16 : 12;
         let name: string = feature.get('name');
 
+        if (name === 'Lost In the Woods') {
+            console.log("Harm deed styler reso", resolution);
+        }
+
         let notes: string = feature.get('notes');
         let isMarket: boolean = notes != null ? notes.toLowerCase().indexOf("market") >= 0 : false;
+
+        // resolution based opacity of deeds
+        let opacity = resolution < 1 ? resolution + 0.25 : 1;
 
         return [
             new Style({
@@ -95,7 +104,7 @@ export class StyleService {
                     radius: (6 / resolution),
                     angle: Math.PI / 4,
                     fill: new Fill({
-                        color: "rgba(255, 0, 0, 0.4)"
+                        color: `rgba( 255, 245, 87 , ${opacity})`
                     }),
                     stroke: new Stroke({
                         color: isMarket ? "Orange" : "transparent",

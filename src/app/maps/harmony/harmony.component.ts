@@ -271,7 +271,7 @@ export class HarmonyComponent implements OnInit {
 
         let deed = this.deeds[args.target.value];
 
-        var extent = [deed.x - 10, deed.y - 10, deed.x + 10, deed.y + 10];
+        var extent = [deed.x - 50, deed.y - 50, deed.x + 50, deed.y + 50];
         var view = this.map.getView();
         var size = this.map.getSize();
 
