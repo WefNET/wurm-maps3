@@ -12,8 +12,10 @@ import OLControl from "ol/control";
 import { defaults as defaultControls } from "ol/control.js";
 import MousePosition from "ol/control/MousePosition.js";
 import FullScreen from "ol/control/FullScreen.js";
-import Draw from "ol/interaction/Draw.js";
-import Snap from "ol/interaction/Snap.js";
+// import Draw from "ol/interaction/Draw.js";
+// import Snap from "ol/interaction/Snap.js";
+
+import { Draw, Modify, Snap} from 'ol/interaction';
 
 import LayerSwitcher from 'ol-layerswitcher';
 
@@ -152,6 +154,9 @@ export class HarmonyComponent implements OnInit {
             ],
             view: this.view
         });
+
+        var modify = new Modify({source: this.drawingSource});
+        this.map.addInteraction(modify);
     }
 
     getData() {
