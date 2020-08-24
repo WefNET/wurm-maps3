@@ -23,7 +23,7 @@ import ImageLayer from 'ol/layer/Image';
 import ImageStatic from 'ol/source/ImageStatic';
 import Projection from 'ol/proj/Projection';
 
-import { IBoringDeed, IBridge, ICanal, ILandmark } from './../models/models';
+import { IBoringDeed, IBridge, ICanal, ILandmark, IHighway } from './../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -75,21 +75,18 @@ export class LayersService {
     },
   ];
   harmonyStartingTowns = [
-    // {
-    //   "Name": "Heartland",
-    //   "Coords": [[992, -722], [992, -722], [999, -730], [999, -730]]
-    // },
     {
       "Name": "Harmony Bay",
-      "X": 996, 
+      "X": 996,
       "Y": -725,
     },
     {
       "Name": "Heartland",
-      "X": 792, 
+      "X": 792,
       "Y": -419,
     },
   ];
+
   constructor() { }
 
   //#region Shared
@@ -113,6 +110,7 @@ export class LayersService {
     var canalSources = new VectorSource();
 
     for (let canal of canals) {
+
       var canalFeature = new Feature({
         geometry: new LineString([[canal.X1, canal.Y1], [canal.X2, canal.Y2]]),
         name: canal.Name,
@@ -478,6 +476,27 @@ export class LayersService {
     }
 
     return startingTownsSource;
+  }
+
+  HarmonyHighwaysVectorSource(roads: IHighway[]): VectorSource {
+    var highwaysSource = new VectorSource();
+
+    for (let road of roads) {
+
+      var path = JSON.parse("[" + road.Path + "]");
+      console.log("Linestring?", path);
+
+      var roadFeature = new Feature({
+        geometry: new LineString(path),
+        name: road.Name
+      });
+
+      console.log("Road feature", roadFeature);
+
+      highwaysSource.addFeature(roadFeature);
+    }
+
+    return highwaysSource;
   }
 
   //#endregion Harmony   

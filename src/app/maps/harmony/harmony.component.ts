@@ -24,7 +24,7 @@ import { StyleService } from './../../services/style.service';
 import { LayersService } from './../../services/layers.service';
 import { SheetsService } from './../../services/sheets.service';
 
-import { IBoringDeed, IBridge, ICanal } from './../../models/models';
+import { IBoringDeed, IBridge, ICanal, IHighway } from './../../models/models';
 
 @Component({
     selector: 'app-harmony',
@@ -79,6 +79,7 @@ export class HarmonyComponent implements OnInit {
     deeds: IBoringDeed[] = [];
     bridges: IBridge[] = [];
     canals: ICanal[] = [];
+    highways: IHighway[] = [];
 
     constructor(private common: CommonService,
         private styles: StyleService,
@@ -156,115 +157,141 @@ export class HarmonyComponent implements OnInit {
 
     getData() {
         this.sheetsService.getHarmonyData()
-      .subscribe(data => {
+            .subscribe(data => {
 
-        // // grid
-        // const gridVectorSource = this.layersService.PristineGridVectorSource();
+                // // grid
+                // const gridVectorSource = this.layersService.PristineGridVectorSource();
 
-        // var gridVector = new VectorLayer({
-        //   source: gridVectorSource,
-        //   title: 'Grid',
-        //   visible: false,
-        //   style: this.styles.gridStyleFunction
-        // })
+                // var gridVector = new VectorLayer({
+                //   source: gridVectorSource,
+                //   title: 'Grid',
+                //   visible: false,
+                //   style: this.styles.gridStyleFunction
+                // })
 
-        // this.overlayGroup.getLayers().push(gridVector);
+                // this.overlayGroup.getLayers().push(gridVector);
 
-        // canale 
-        var canals = data["valueRanges"][1].values;
+                // roads
+                var roads = data["valueRanges"][4].values;
 
-        canals.forEach(canal => {
-          var c = new ICanal();
+                roads.forEach(road => {
+                    var r = new IHighway();
 
-          c.Name = canal[0];
-          c.X1 = canal[1];
-          c.Y1 = 0 - Number(canal[2]);
-          c.X2 = canal[3];
-          c.Y2 = 0 - Number(canal[4]);
-          c.IsCanal = canal[5] === "TRUE";
-          c.IsTunnel = canal[6] === "TRUE";
-          c.AllBoats = canal[7] === "TRUE";
+                    r.Name = road[0];
+                    r.Path = road[1];
 
-          this.canals.push(c);
-        });
+                    this.highways.push(r);
+                });
 
-        const canalVectorSource = this.layersService.sharedCanalsVectorSource(this.canals);
+                console.log("highways", this.highways);
 
-        var canalVector = new VectorLayer({
-          source: canalVectorSource,
-          title: 'Canals',
-          style: this.styles.canalStyleFunctionHarmony
-        })
+                const highwayVectorSource = this.layersService.HarmonyHighwaysVectorSource(this.highways);
 
-        this.overlayGroup.getLayers().push(canalVector);
+                console.log(highwayVectorSource);
 
-        // // bridges
-        // var bridges = data["valueRanges"][2].values;
+                var highwaysVector = new VectorLayer({
+                    source: highwayVectorSource,
+                    title: 'Highways',
+                    style: this.styles.highwayStyleFunctionHarmony
+                });
 
-        // bridges.forEach(bridge => {
-        //   var b = new IBridge();
+                this.overlayGroup.getLayers().push(highwaysVector);
 
-        //   b.Name = bridge[0];
-        //   b.X1 = bridge[1];
-        //   b.Y1 = 0 - Number(bridge[2]);
-        //   b.X2 = bridge[3];
-        //   b.Y2 = 0 - Number(bridge[4]);
+                // canale 
+                var canals = data["valueRanges"][1].values;
 
-        //   this.bridges.push(b);
-        // });
+                canals.forEach(canal => {
+                    var c = new ICanal();
 
-        // const bridgeVectorSource = this.layersService.sharedBridgesVectorSource(this.bridges);
+                    c.Name = canal[0];
+                    c.X1 = canal[1];
+                    c.Y1 = 0 - Number(canal[2]);
+                    c.X2 = canal[3];
+                    c.Y2 = 0 - Number(canal[4]);
+                    c.IsCanal = canal[5] === "TRUE";
+                    c.IsTunnel = canal[6] === "TRUE";
+                    c.AllBoats = canal[7] === "TRUE";
 
-        // var bridgeVector = new VectorLayer({
-        //   source: bridgeVectorSource,
-        //   title: 'Bridges',
-        //   style: this.styles.bridgeStyleFunction
-        // })
+                    this.canals.push(c);
+                });
 
-        // this.overlayGroup.getLayers().push(bridgeVector);
+                const canalVectorSource = this.layersService.sharedCanalsVectorSource(this.canals);
 
-        // deeds
-        var deeds = data["valueRanges"][0].values;
+                var canalVector = new VectorLayer({
+                    source: canalVectorSource,
+                    title: 'Canals',
+                    style: this.styles.canalStyleFunctionHarmony
+                })
 
-        deeds.forEach(deed => {
-          var d = new IBoringDeed();
+                this.overlayGroup.getLayers().push(canalVector);
 
-          d.name = deed[0];
-          d.x = Number(deed[1]);
-          d.y = 0 - Number(deed[2]);
-          d.notes = deed[3];
+                // // bridges
+                // var bridges = data["valueRanges"][2].values;
 
-          this.deeds.push(d);
-        });
+                // bridges.forEach(bridge => {
+                //   var b = new IBridge();
 
-        this.deeds.sort(function (a, b) {
-          if (a.name < b.name) { return -1; }
-          if (a.name > b.name) { return 1; }
-          return 0;
-        })
+                //   b.Name = bridge[0];
+                //   b.X1 = bridge[1];
+                //   b.Y1 = 0 - Number(bridge[2]);
+                //   b.X2 = bridge[3];
+                //   b.Y2 = 0 - Number(bridge[4]);
 
-        const deedVectorSource = this.layersService.sharedDeedsVectorSource(this.deeds);
+                //   this.bridges.push(b);
+                // });
 
-        var deedVector = new VectorLayer({
-          source: deedVectorSource,
-          title: 'Deeds',
-          style: this.styles.deedStyleFunctionHarmony
-        })
+                // const bridgeVectorSource = this.layersService.sharedBridgesVectorSource(this.bridges);
 
-        this.overlayGroup.getLayers().push(deedVector);
+                // var bridgeVector = new VectorLayer({
+                //   source: bridgeVectorSource,
+                //   title: 'Bridges',
+                //   style: this.styles.bridgeStyleFunction
+                // })
 
-        // starting deeds
-        const startingDeedsVectorSource = this.layersService.HarmonyStartingTownsVectorSource();
+                // this.overlayGroup.getLayers().push(bridgeVector);
 
-        var startingDeedsVector = new VectorLayer({
-          source: startingDeedsVectorSource,
-          title: 'Startin\' Deeds',
-          style: this.styles.startingTownStyleFunctionHarmony
-        })
+                // deeds
+                var deeds = data["valueRanges"][0].values;
 
-        this.overlayGroup.getLayers().push(startingDeedsVector);
+                deeds.forEach(deed => {
+                    var d = new IBoringDeed();
 
-      });
+                    d.name = deed[0];
+                    d.x = Number(deed[1]);
+                    d.y = 0 - Number(deed[2]);
+                    d.notes = deed[3];
+
+                    this.deeds.push(d);
+                });
+
+                this.deeds.sort(function (a, b) {
+                    if (a.name < b.name) { return -1; }
+                    if (a.name > b.name) { return 1; }
+                    return 0;
+                })
+
+                const deedVectorSource = this.layersService.sharedDeedsVectorSource(this.deeds);
+
+                var deedVector = new VectorLayer({
+                    source: deedVectorSource,
+                    title: 'Deeds',
+                    style: this.styles.deedStyleFunctionHarmony
+                })
+
+                this.overlayGroup.getLayers().push(deedVector);
+
+                // starting deeds
+                const startingDeedsVectorSource = this.layersService.HarmonyStartingTownsVectorSource();
+
+                var startingDeedsVector = new VectorLayer({
+                    source: startingDeedsVectorSource,
+                    title: 'Startin\' Deeds',
+                    style: this.styles.startingTownStyleFunctionHarmony
+                })
+
+                this.overlayGroup.getLayers().push(startingDeedsVector);
+
+            });
     }
 
     findDeed(args) {
@@ -276,6 +303,10 @@ export class HarmonyComponent implements OnInit {
         var size = this.map.getSize();
 
         view.fit(extent, size);
+    }
+
+    cleanDeedName(name: string) {
+        return name.split('+').join(' ');
     }
 
     //#region Drawing Tools

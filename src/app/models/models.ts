@@ -34,3 +34,8 @@ export class ILandmark {
     LandmarkType: string;
     Notes: string;
 }
+
+export class IHighway {
+    Name: string;
+    Path: string;
+}

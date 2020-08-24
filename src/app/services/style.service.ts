@@ -87,9 +87,11 @@ export class StyleService {
         let fontSize: number = resolution <= 0.125 ? 16 : 12;
         let name: string = feature.get('name');
 
-        if (name === 'Lost In the Woods') {
-            console.log("Harm deed styler reso", resolution);
-        }
+        name = name.split('+').join('\n');
+
+        // if (name === 'Lost In the Woods') {
+        //     console.log("Harm deed styler reso", resolution);
+        // }
 
         let notes: string = feature.get('notes');
         let isMarket: boolean = notes != null ? notes.toLowerCase().indexOf("market") >= 0 : false;
@@ -113,7 +115,7 @@ export class StyleService {
                 }),
                 text: new Text({
                     font: '' + fontSize + 'px Calibri,sans-serif',
-                    text: resolution < 1 ? feature.get('name') : '',
+                    text: resolution < 1 ? name : '',
                     textBaseline: 'middle',
                     textAlign: 'center',
                     fill: new Fill({
@@ -316,6 +318,7 @@ export class StyleService {
     }
 
     gridStyleFunction(feature, resolution) {
+        console.log("Highway style?", feature, resolution);
 
         var fontSize = (14 / resolution) + 16;
 
@@ -408,5 +411,17 @@ export class StyleService {
         //         })
         //     })
         // ]
+    }
+
+    highwayStyleFunctionHarmony(feature, resolution) {
+        return [
+            new Style({
+                stroke: new Stroke({
+                    width: 200,
+                    color: "black",
+                }),
+            }),
+
+        ]
     }
 }

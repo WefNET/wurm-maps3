@@ -22,7 +22,7 @@ export class SheetsService {
   private _v4SheetsAPIXanaduCombinedData: string = `${this.v4API}/${this.xanaduSheetId}/values:batchGet?${this.q1}&${this.q2}&${this.q3}&${this.q4}&key=${this.yourMotherSmokesCrack}`;
   private _v4SheetsAPIDeliCombinedData: string = `${this.v4API}/${this.deliSheetId}/values:batchGet?${this.q1}&${this.q2}&${this.q3}&${this.q4}&${this.q5}&key=${this.yourMotherSmokesCrack}`;
   private _v4SheetsAPIPristineCombinedData: string = `${this.v4API}/${this.pristineSheet}/values:batchGet?${this.q1}&${this.q2}&${this.q3}&${this.q4}&${this.q5}&key=${this.yourMotherSmokesCrack}`;
-  private _v4SheetsAPIHarmonyCombinedData: string = `${this.v4API}/${this.harmonySheet}/values:batchGet?${this.q1}&${this.q2}&${this.q3}&${this.q4}&key=${this.yourMotherSmokesCrack}`;
+  private _v4SheetsAPIHarmonyCombinedData: string = `${this.v4API}/${this.harmonySheet}/values:batchGet?${this.q1}&${this.q2}&${this.q3}&${this.q4}&${this.q5}&key=${this.yourMotherSmokesCrack}`;
 
 
   constructor(private http: HttpClient) { }
