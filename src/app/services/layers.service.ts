@@ -484,14 +484,14 @@ export class LayersService {
     for (let road of roads) {
 
       var path = JSON.parse("[" + road.Path + "]");
-      console.log("Linestring?", path);
+      // console.log("Linestring?", JSON.stringify(path));
 
       var roadFeature = new Feature({
         geometry: new LineString(path),
         name: road.Name
       });
 
-      console.log("Road feature", roadFeature);
+      // console.log("Road feature", roadFeature);
 
       highwaysSource.addFeature(roadFeature);
     }

@@ -188,11 +188,11 @@ export class HarmonyComponent implements OnInit {
                     this.highways.push(r);
                 });
 
-                console.log("highways", this.highways);
+                // console.log("highways", this.highways);
 
                 const highwayVectorSource = this.layersService.HarmonyHighwaysVectorSource(this.highways);
 
-                console.log(highwayVectorSource);
+                // console.log(highwayVectorSource);
 
                 var highwaysVector = new VectorLayer({
                     source: highwayVectorSource,

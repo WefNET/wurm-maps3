@@ -114,7 +114,8 @@ export class StyleService {
                     })
                 }),
                 text: new Text({
-                    font: '' + fontSize + 'px Calibri,sans-serif',
+                    font: `bold ${fontSize}px Arial, Verdana, Helvetica, sans-serif`,
+                    // font: '' + fontSize + 'px Calibri,sans-serif',
                     text: resolution < 1 ? name : '',
                     textBaseline: 'middle',
                     textAlign: 'center',
@@ -122,7 +123,7 @@ export class StyleService {
                         color: "White"
                     }),
                     stroke: new Stroke({
-                        color: "Black",
+                        color: 'rgba(0, 0, 0, 0.6)',
                         width: 1
                     })
                 })
@@ -417,8 +418,8 @@ export class StyleService {
         return [
             new Style({
                 stroke: new Stroke({
-                    width: 200,
-                    color: "black",
+                    width: 1 / resolution,
+                    color: 'rgba(0, 0, 0, 0.6)',
                 }),
             }),
 
