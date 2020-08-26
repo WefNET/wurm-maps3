@@ -15,7 +15,7 @@ import FullScreen from "ol/control/FullScreen.js";
 // import Draw from "ol/interaction/Draw.js";
 // import Snap from "ol/interaction/Snap.js";
 
-import { Draw, Modify, Snap} from 'ol/interaction';
+import { Draw, Modify, Snap } from 'ol/interaction';
 
 import LayerSwitcher from 'ol-layerswitcher';
 
@@ -27,6 +27,7 @@ import { LayersService } from './../../services/layers.service';
 import { SheetsService } from './../../services/sheets.service';
 
 import { IBoringDeed, IBridge, ICanal, IHighway } from './../../models/models';
+import Overlay from 'ol/Overlay';
 
 @Component({
     selector: 'app-harmony',
@@ -136,6 +137,24 @@ export class HarmonyComponent implements OnInit {
             ]
         });
 
+        /**
+        * Elements that make up the popup.
+        */
+        var container = document.getElementById('popup');
+        var content = document.getElementById('popup-content');
+        var closer = document.getElementById('popup-closer');
+
+        /**
+         * Create an overlay to anchor the popup to the map.
+         */
+        var overlay = new Overlay({
+            element: container,
+            autoPan: true,
+            // autoPanAnimation: {
+            //     duration: 250,
+            // },
+        });
+
         this.map = new OlMap({
             target: "map",
             controls: defaultControls().extend([
@@ -156,7 +175,19 @@ export class HarmonyComponent implements OnInit {
             view: this.view
         });
 
-        var modify = new Modify({source: this.drawingSource});
+        this.map.on('singleclick', function (evt) {
+            console.log("Click", evt);
+
+            var coordinate = evt.coordinate;
+            
+            
+            content.innerHTML = '<p>You clicked here:</p><code>' + coordinate + '</code>';
+            overlay.setPosition(coordinate);
+
+            console.log("Overlay", overlay);
+        });
+
+        var modify = new Modify({ source: this.drawingSource });
         this.map.addInteraction(modify);
     }
 

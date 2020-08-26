@@ -15,6 +15,7 @@ import { format } from "ol/coordinate.js";
 import Draw from "ol/interaction/Draw.js";
 import Snap from "ol/interaction/Snap.js";
 import { Circle as CircleStyle, Fill, Stroke, Style, RegularShape, Text, Icon } from "ol/style.js";
+import { style } from '@angular/animations';
 
 @Injectable({
     providedIn: 'root'
@@ -99,7 +100,9 @@ export class StyleService {
         // resolution based opacity of deeds
         let opacity = resolution < 1 ? resolution + 0.25 : 1;
 
-        return [
+        let styles: Style[] = [];
+
+        const deedSyle =
             new Style({
                 image: new RegularShape({
                     points: 4,
@@ -127,8 +130,41 @@ export class StyleService {
                         width: 1
                     })
                 })
-            })
-        ]
+            });
+
+        styles.push(deedSyle);
+
+        let iconBlue = new Style({
+            image: new RegularShape({
+                points: 4,
+                radius: (2 / resolution),
+                angle: Math.PI / 4,
+                fill: new Fill({
+                    color: `rgba( 0, 0, 255 , ${opacity})`
+                }),
+                displacement: [-2.5 / resolution, 2.5 / resolution],
+            }),
+
+        });
+
+        styles.push(iconBlue);
+
+        let iconGreen = new Style({
+            image: new RegularShape({
+                points: 4,
+                radius: (2 / resolution),
+                angle: Math.PI / 4,
+                fill: new Fill({
+                    color: `rgba( 0, 255, 0 , ${opacity})`
+                }),
+                displacement: [2.5 / resolution, 2.5 / resolution],
+            }),
+
+        });
+
+        styles.push(iconGreen);
+
+        return styles;
     }
 
     startingTownStyleFunction(feature, resolution) {
