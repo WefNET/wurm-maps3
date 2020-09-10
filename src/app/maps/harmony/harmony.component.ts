@@ -150,10 +150,16 @@ export class HarmonyComponent implements OnInit {
         var overlay = new Overlay({
             element: container,
             autoPan: true,
-            // autoPanAnimation: {
-            //     duration: 250,
-            // },
+            autoPanAnimation: {
+                duration: 250,
+            },
         });
+
+        closer.onclick = function () {
+            overlay.setPosition(undefined);
+            closer.blur();
+            return false;
+          };
 
         this.map = new OlMap({
             target: "map",
@@ -172,6 +178,7 @@ export class HarmonyComponent implements OnInit {
                 }),
                 this.overlayGroup
             ],
+            overlays: [overlay],
             view: this.view
         });
 
@@ -179,6 +186,7 @@ export class HarmonyComponent implements OnInit {
             console.log("Click", evt);
 
             var coordinate = evt.coordinate;
+            
             
             
             content.innerHTML = '<p>You clicked here:</p><code>' + coordinate + '</code>';
